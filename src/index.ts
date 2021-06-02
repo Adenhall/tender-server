@@ -5,6 +5,7 @@ require("dotenv").config();
 import mongoose from "mongoose";
 
 import authRouter from "./routes/auth";
+import usersRouter from './routes/users'
 
 const main = () => {
   const app = express();
@@ -14,6 +15,7 @@ const main = () => {
   app.use(bodyParser.json());
 
   app.use("/auth", authRouter);
+  app.use('/users', usersRouter)
 
   mongoose
     .connect(process.env.MONGO_URL || "", {

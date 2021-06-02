@@ -10,10 +10,11 @@ router.get("/", (_req, res) => {
 router.post("/signup", async (req, res) => {
   try {
     const user = await User.create(req.body);
+    const token = await user.generateToken();
     user &&
       res.status(200).json({
         message: "Success!",
-        data: req.body,
+        data: { user, token },
       });
   } catch (error) {
     res.send(error);
