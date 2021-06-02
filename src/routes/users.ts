@@ -81,14 +81,7 @@ router.post("/like", async (req, res) => {
             type === "matched"
               ? "Match found!"
               : "Nice! Another one to the collection",
-          data: {
-            type,
-            matchName: match.name,
-            test: {
-              match,
-              user,
-            },
-          },
+          data: user,
         });
       }
     }
@@ -114,7 +107,7 @@ router.post("/pass", async (req, res) => {
       await user.save();
       res.status(200).json({
         message: "Success",
-        passed: user.passed,
+        data: user,
       });
     }
   } catch (error) {
