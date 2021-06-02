@@ -5,7 +5,7 @@ const router = express.Router();
 
 import User from "../models/user";
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   const { liked, passed, currentUser } = req.body;
 
   if (!liked || !passed || !currentUser) {
