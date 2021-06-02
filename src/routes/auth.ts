@@ -3,9 +3,6 @@ import User from "../models/user";
 const router = express.Router();
 
 // TO DO: Implement authentication
-router.get("/", (_req, res) => {
-  res.send("Hello worldddd");
-});
 
 router.post("/signup", async (req, res) => {
   try {
@@ -19,6 +16,15 @@ router.post("/signup", async (req, res) => {
   } catch (error) {
     res.send(error);
   }
+});
+
+router.post("/login", async (req, res) => {
+  const user = await User.find(req.body);
+  !user && res.status(404).send("Not found");
+  res.status(200).json({
+    message: "Success",
+    data: user,
+  });
 });
 
 export default router;

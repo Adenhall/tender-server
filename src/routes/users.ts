@@ -6,25 +6,31 @@ const router = express.Router();
 import User from "../models/user";
 
 router.get("/", async (req, res) => {
-  const { liked, currentUser } = req.body;
+  const { liked, passed, currentUser } = req.body;
 
-  if (!liked) {
-    res.status(400).send("Missing liked list");
+  if (!liked || !passed || !currentUser) {
+    res.status(400).send("Missing required parameters");
   }
 
   try {
     const likedIDs = liked
       ? liked.map((item: string) => mongoose.Types.ObjectId(item))
       : [];
+    const passedIDs = liked
+      ? passed.map((item: string) => mongoose.Types.ObjectId(item))
+      : [];
     // To include one self in order not to match yourself (Might make this a feature later)
-    currentUser && likedIDs.push(mongoose.Types.ObjectId(currentUser));
+    likedIDs.push(mongoose.Types.ObjectId(currentUser));
     const aggregation = [
       {
         $match: {
           $expr: {
             $not: [
               {
-                $in: ["$$ROOT._id", likedIDs],
+                $or: [
+                  { $in: ["$$ROOT._id", likedIDs] },
+                  { $in: ["$$ROOT._id", passedIDs] },
+                ],
               },
             ],
           },
@@ -85,6 +91,31 @@ router.post("/like", async (req, res) => {
           },
         });
       }
+    }
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+router.post("/pass", async (req, res) => {
+  const { passedId, currentUser } = req.body;
+
+  if (!passedId || !currentUser) {
+    res.status(400).send("Missing required parameters");
+  }
+
+  try {
+    const user = await User.findById(currentUser);
+
+    if (!user) {
+      res.status(400).send("User not found");
+    } else {
+      !user.passed.includes(passedId) && user.passed.push(passedId);
+      await user.save();
+      res.status(200).json({
+        message: "Success",
+        passed: user.passed,
+      });
     }
   } catch (error) {
     res.send(error);

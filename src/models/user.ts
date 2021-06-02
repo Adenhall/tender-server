@@ -9,6 +9,7 @@ export interface IUser extends mongoose.Document {
   username: string;
   password: string;
   liked: Schema.Types.ObjectId[];
+  passed: Schema.Types.ObjectId[];
   match: Schema.Types.ObjectId[];
   token: string;
 }
@@ -38,6 +39,10 @@ const userSchemaDef: SchemaDefinition = {
     required: [true, "Password is required"],
   },
   liked: {
+    type: [Schema.Types.ObjectId],
+    ref: "User",
+  },
+  passed: {
     type: [Schema.Types.ObjectId],
     ref: "User",
   },
