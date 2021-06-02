@@ -115,4 +115,34 @@ router.post("/pass", async (req, res) => {
   }
 });
 
+router.post("/getAllLiked", async (req, res) => {
+  const { currentUser } = req.body;
+  if (!currentUser) {
+    res.status(400).send("Missing required parameters");
+  }
+
+  const user = await User.findById(currentUser);
+
+  if (!user) {
+    res.status(404).send("User not found");
+  } else {
+    const aggregation = [
+      {
+        $match: {
+          $expr: {
+            $in: ["$$ROOT._id", user.liked],
+          },
+        },
+      },
+    ];
+
+    const likedUsers = await User.aggregate(aggregation);
+
+    res.status(200).json({
+      message: "Success!",
+      data: likedUsers,
+    });
+  }
+});
+
 export default router;
