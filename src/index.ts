@@ -18,7 +18,7 @@ const main = () => {
   app.use('/users', usersRouter)
 
   mongoose
-    .connect(process.env.MONGO_URL || "", {
+    .connect(process.env.MONGO_URL || "mongodb://localhost:27017/tender", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
