@@ -38,6 +38,19 @@ export const seedUsers = async () => {
       };
       users.push(user);
     }
+
+    // This is the main test user
+    users.push({
+      name: 'Quan',
+      age: 22,
+      pictureUrl: faker.image.imageUrl(),
+      bio: 'Cool developer',
+      username: 'adenhall',
+      password: '123',
+      liked: [],
+      passed: [],
+      match: [],
+    });
     await userCollection.insertMany(users);
   } catch (error) {
     console.log(error.stack);
