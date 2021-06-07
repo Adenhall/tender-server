@@ -32,6 +32,9 @@ export const seedUsers = async () => {
         bio: faker.lorem.paragraph(),
         username: faker.internet.userName(),
         password: faker.internet.password(),
+        liked: [],
+        passed: [],
+        match: [],
       };
       users.push(user);
     }
