@@ -62,8 +62,29 @@ const userSchema = new Schema<IUser>(userSchemaDef, {
 
 userSchema.methods.generateToken = async function () {
   const user = this;
+  const {
+    _id,
+    name,
+    age,
+    pictureUrl,
+    bio,
+    username,
+    liked,
+    passed,
+    match,
+  } = user;
   const token = jwt.sign(
-    { _id: this._id },
+    {
+      _id,
+      name,
+      age,
+      pictureUrl,
+      bio,
+      username,
+      liked,
+      passed,
+      match,
+    },
     process.env.JWT_SECRET || "very_secret",
     {
       expiresIn: "14d",

@@ -19,12 +19,18 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const user = await User.find(req.body);
-  !user && res.status(404).send("Not found");
-  res.status(200).json({
-    message: "Success",
-    data: user,
-  });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username, password });
+
+  if (user) {
+    const token = await user.generateToken();
+    res.status(200).json({
+      message: "Success",
+      data: { userName: user.username, token },
+    });
+  } else {
+    res.status(404).send("User not found");
+  }
 });
 
 export default router;
