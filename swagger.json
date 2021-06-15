@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http: //localhost:3000"
     }
   ],
   "paths": {
@@ -18,11 +18,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body"
+                "$ref": "#/components/schemas/loginRequestBody"
               },
               "examples": {
                 "0": {
-                  "value": "{\n    \"username\": \"adenhall\",\n    \"password\": \"123\"\n}"
+                  "value": "{\n\"username\": \"adenhall\",\n\"password\": \"123\"\n}"
                 }
               }
             }
@@ -30,41 +30,40 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Returns a token and username",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/loginResponse"
+                }
               }
             }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     },
     "/users": {
       "post": {
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Returns a list of matchable users. Decode the token from /login to get the _id to pass in as currentUser",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_1"
+                "$ref": "#/components/schemas/getAllUserRequestBody"
               },
               "examples": {
                 "0": {
-                  "value": "{\n    \"liked\": [],\n    \"passed\": [],\n    \"currentUser\": \"60c890787612f502f0288682\"\n}"
+                  "value": "{\n\"liked\": [],\n\"passed\": [],\n\"currentUser\": \"60c890787612f502f0288682\"\n}"
                 }
               }
             }
@@ -72,18 +71,25 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector"
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/getAllUserResponse"
+                }
+              }
+            }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     },
@@ -94,11 +100,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_2"
+                "$ref": "#/components/schemas/likeUserRequestBody"
               },
               "examples": {
                 "0": {
-                  "value": "{\n    \"matchId\": \"60c890787612f502f0288686\",\n    \"currentUser\": \"60c890787612f502f0288682\"\n}"
+                  "value": "{\n  \"matchId\": \"60c890787612f502f0288686\",\n  \"currentUser\": \"60c890787612f502f0288682\"\n}"
                 }
               }
             }
@@ -110,37 +116,36 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/likeUserResponse"
+                }
               }
             }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     },
-    "/users//getAllLiked": {
+    "/users/getAllLiked": {
       "post": {
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_3"
+                "$ref": "#/components/schemas/getAllLikedRequestBody"
               },
               "examples": {
                 "0": {
-                  "value": "{\n    \"currentUser\": \"60c890787612f502f0288682\"\n}"
+                  "value": "{\n  \"currentUser\": \"60c890787612f502f0288682\"\n}"
                 }
               }
             }
@@ -152,22 +157,21 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/getAllLikedResponse"
+                }
               }
             }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     },
@@ -178,11 +182,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_4"
+                "$ref": "#/components/schemas/passUserRequestBody"
               },
               "examples": {
                 "0": {
-                  "value": "{\n    \"passedId\": \"60c890787612f502f028868c\",\n    \"currentUser\": \"60c890787612f502f0288682\"\n}"
+                  "value": "{\n  \"passedId\": \"60c890787612f502f028868c\",\n  \"currentUser\": \"60c890787612f502f0288682\"\n}"
                 }
               }
             }
@@ -194,22 +198,21 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/passUserResponse"
+                }
               }
             }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     },
@@ -220,7 +223,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_5"
+                "$ref": "#/components/schemas/signupRequestBody"
               },
               "examples": {
                 "0": {
@@ -236,29 +239,28 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/signupResponse"
+                }
               }
             }
           }
         },
         "servers": [
           {
-            "url": "http://localhost:3000"
+            "url": "http: //localhost:3000"
           }
         ]
       },
       "servers": [
         {
-          "url": "http://localhost:3000"
+          "url": "http: //localhost:3000"
         }
       ]
     }
   },
   "components": {
     "schemas": {
-      "body": {
+      "loginRequestBody": {
         "type": "object",
         "properties": {
           "password": {
@@ -269,7 +271,29 @@
           }
         }
       },
-      "body_1": {
+      "loginResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Success"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "userName": {
+                "type": "string",
+                "example": "Adenhall"
+              },
+              "token": {
+                "type": "string",
+                "example": "realllllllllylongtoken"
+              }
+            }
+          }
+        }
+      },
+      "getAllUserRequestBody": {
         "type": "object",
         "properties": {
           "currentUser": {
@@ -289,7 +313,19 @@
           }
         }
       },
-      "body_2": {
+      "getAllUserResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Success"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserModel"
+          }
+        }
+      },
+      "likeUserRequestBody": {
         "type": "object",
         "properties": {
           "currentUser": {
@@ -300,7 +336,18 @@
           }
         }
       },
-      "body_3": {
+      "likeUserResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserModel"
+          }
+        }
+      },
+      "getAllLikedRequestBody": {
         "type": "object",
         "properties": {
           "currentUser": {
@@ -308,7 +355,21 @@
           }
         }
       },
-      "body_4": {
+      "getAllLikedResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserModel"
+            }
+          }
+        }
+      },
+      "passUserRequestBody": {
         "type": "object",
         "properties": {
           "currentUser": {
@@ -319,7 +380,18 @@
           }
         }
       },
-      "body_5": {
+      "passUserResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserModel"
+          }
+        }
+      },
+      "signupRequestBody": {
         "type": "object",
         "properties": {
           "password": {
@@ -357,6 +429,81 @@
           },
           "username": {
             "type": "string"
+          }
+        }
+      },
+      "signupResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserModel"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "token": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                ]
+              },
+              "token": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "UserModel": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "pictureUrl": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "liked": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "passed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "match": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
