@@ -25,6 +25,9 @@ This is the server for tender app made by Quan
     |--index.ts (This is the entry point for the whole application. You can configure the server, Express in here)
 
 ```
+**Notes**
+
+Whenever you create a service, update it in `swagger.json` for documentation. See https://inspector.swagger.io/builder to test run your API endpoint and then you can do `Create API Definition` to stick it in our `swagger.json`
 
 ### How to start locally
 - Create an .env file in root from .env.template (You can skip this one if you don't want to setup a remote mongoDB)
