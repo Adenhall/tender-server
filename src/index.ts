@@ -3,6 +3,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 require("dotenv").config();
 import mongoose from "mongoose";
+import swaggerUi from 'swagger-ui-express'
+import swaggerDoc from '../swagger.json'
 
 import authRouter from "./routes/auth";
 import usersRouter from './routes/users'
@@ -13,6 +15,8 @@ const main = () => {
 
   // Parse JSON
   app.use(bodyParser.json());
+
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 
   app.use("/auth", authRouter);
   app.use('/users', usersRouter)
